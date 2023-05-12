@@ -47,7 +47,7 @@ public final class DsWrapper {
 			return target.cast(unwrapped);
 		}
 		if (DELEGATING_DATA_SOURCE_PRESENT) {
-			DataSource targetDataSource = DelegatingDsWrapper.getTargetDataSource(dataSource);
+			DataSource targetDataSource = DelegatingDataSourceUnwrapper.getTargetDataSource(dataSource);
 			if (targetDataSource != null) {
 				return unwrap(targetDataSource, unwrapInterface, target);
 			}
@@ -87,7 +87,7 @@ public final class DsWrapper {
 		return null;
 	}
 
-	private static class DelegatingDsWrapper {
+	private static class DelegatingDataSourceUnwrapper {
 
 		private static DataSource getTargetDataSource(DataSource dataSource) {
 			if (dataSource instanceof DelegatingDataSource delegatingDataSource) {
